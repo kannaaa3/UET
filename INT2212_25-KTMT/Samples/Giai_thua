@@ -1,0 +1,34 @@
+.data
+
+.text
+main:
+	
+	li $a0,5
+	jal fact
+	move $a0, $v0
+	li $v0,1
+	syscall
+
+	j EXIT
+	
+fact: 	addi $sp, $sp,-8
+	sw $ra, 4($sp)
+	sw $a0, ($sp)
+	slti $t0, $a0,2
+	beq $t0,$zero, RESCURSIVE
+	li $v0, 1
+	addi $sp, $sp,8
+	jr $ra
+	
+RESCURSIVE:
+	addi $a0,$a0,-1
+	jal fact
+	lw $a0, ($sp)
+	lw $ra, 4($sp)
+	addi $sp, $sp, 8
+	mul $v0, $v0,$a0
+	jr $ra
+		
+EXIT:
+li $v0,10
+syscall 

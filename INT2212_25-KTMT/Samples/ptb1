@@ -1,0 +1,72 @@
+# Giar và bi?n lu?n phuong trình ax +b  = 0
+
+.data
+	msg_a: .asciiz "Nhap a="
+	msg_b: .asciiz "Nhap b="
+	msg_vn: .asciiz "Phuong trinh vo nghiem"
+	msg_vsn: .asciiz "Phuong trinh vo so nghiem"
+	msg_cn: .asciiz "Phuong trinh co nghiem x="
+	const_1: .float -1.0
+	const_0: .float 0
+	
+.text
+
+# Nhap a:
+	la $a0, msg_a
+	addi $v0,$zero, 4
+	syscall 
+	
+	addi $v0,$zero, 6
+	syscall 
+	
+	mov.s  $f2, $f0
+	
+# Nhap b:
+	la $a0, msg_b
+	addi $v0,$zero, 4
+	syscall 
+	
+	addi $v0,$zero, 6
+	syscall 
+	
+	mov.s $f4, $f0
+	
+# Gi?i và bi?n lu?n
+	l.s $f6, const_0 
+	c.eq.s $f2, $f6
+	bc1t B_0
+	
+	la $a0, msg_cn
+	addi $v0,$zero, 4
+	syscall 
+	
+	div.s $f12, $f4, $f2 # b/a
+	l.s $f6, const_1 
+	mul.s $f12, $f12, $f6  # -b/a
+	addi $v0,$zero, 2
+	syscall 
+	j EXIT 
+		
+B_0:
+	l.s $f6, const_0 
+	c.eq.s $f4, $f6
+	bc1t VSN
+	
+	la $a0, msg_vn
+	addi $v0,$zero, 4
+	syscall 
+	j EXIT 
+	
+VSN: 
+	la $a0, msg_vsn
+	addi $v0,$zero, 4
+	syscall 	
+	
+EXIT:
+	addi $v0,$zero, 10
+	syscall 
+
+	
+	
+	
+	

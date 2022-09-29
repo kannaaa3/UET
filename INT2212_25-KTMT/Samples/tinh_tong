@@ -1,0 +1,43 @@
+# Tinh t?ng hai s? nguyên ddwowcj nh?p t? bàn phím
+
+.data
+	msg_a: .asciiz "Nhap a = "
+	msg_b: .asciiz "Nhap b = "
+	msg_tong: .asciiz "Tong a + b = "
+	
+	
+.text
+# Nh?p a:
+	addi $v0,$zero, 4
+	la $a0, msg_a
+	syscall 
+	
+	addi $v0,$zero, 5
+	syscall 
+	
+	add $s0, $v0, $zero
+	
+# Nh?p b:
+	addi $v0,$zero, 4
+	la $a0, msg_b
+	syscall 
+	
+	addi $v0,$zero, 5
+	syscall
+	
+	add $s1, $v0, $zero
+	
+# Tinh t?ng và hi?n k?t qu?:
+	addi $v0,$zero, 4
+	la $a0, msg_tong
+	syscall 
+
+	add $a0, $s0,$s1
+	addi $v0,$zero, 1
+	syscall 	
+	
+# K?t thúc:
+
+	addi $v0,$zero, 10
+	syscall 		
+	

@@ -1,0 +1,17 @@
+*.out
+.*.lb
+*.tex
+*.iml
+*.aux 
+*.fdb_latexmk 
+*.fls 
+*.log 
+*.synctex.gz
+*.synctex
+*.synctex(busy)
+*.synctex.gz(busy)
+*.pdfsync
+*.gtex
+*.nls
+*.pdf
+

@@ -1,0 +1,15 @@
+.data  
+	msg: .asciiz "Hello world!"
+	
+.text
+
+	la $a0, msg
+	addi $v0, $zero, 4
+	syscall
+	
+	
+	
+	# K?t thúc
+	addi $v0,$zero, 10
+	syscall 
+	
