@@ -1,0 +1,47 @@
+isothermal : In thermodynamics, an isothermal process is a type of thermodynamic process in which the temperature of the system remains constant: ΔT = 0.
+
+diagram
+Superimposed on the middle isotherm 
+confined
+translational
+traverse
+
+ We can even predict that l should
+vary (inversely) as the square of the molecular diameter because the cross section of a molecule—not its diameter—determines its effective target area
+
+be adept at
+eigenvalue
+peruse
+indispensible
+
+occasionally
+
+recall
+interchange
+
+stochastics
+downtown, suburb
+
+regarding conjecture
+sochastic
+
+you can find stationary points by taking the gradient and setting it to 0. i won't show it, but this problem is convex (the hessiam is symmetric positive semidefinite), meaning that if we find one local minimizer, it is global (but not necessarily unique)
+
+notion
+generalized
+trivial
+explicit
+axiom
+versality
+in the sense that
+corollary
+terminology
+in the context of something
+equating
+in the light of
+preliminary
+conic section 
+associate
+projection
+streamlined
+
