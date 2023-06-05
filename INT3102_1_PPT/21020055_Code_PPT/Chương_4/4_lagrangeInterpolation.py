@@ -17,6 +17,9 @@ def lagrangeInterpolation(f: list, givenPoint: float) -> float:
 
 
 if __name__ == "__main__":
+    # print("Example.", lagrangeInterpolation(
+    #     [(0.698, 0.7661), (0.733, 0.7432), (0.768, 0.7193), (0.803, 0.6946)],
+    #     0.75))
     print("Example.", lagrangeInterpolation(
-        [(0.698, 0.7661), (0.733, 0.7432), (0.768, 0.7193), (0.803, 0.6946)],
-        0.75))
+        [(-0.75, -0.0718125), (-0.5, -0.02475), (-0.25, 0.3349375), (0, 0.2484244)],
+        -0.3333333))

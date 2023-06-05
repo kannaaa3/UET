@@ -1,4 +1,5 @@
 import numpy as np
+from math import comb
 
 
 def newtonForwardDifference(givenPoint, x: np.ndarray, y: np.ndarray):
@@ -13,8 +14,12 @@ def newtonForwardDifference(givenPoint, x: np.ndarray, y: np.ndarray):
         for j in range(n-i):
             difF[j][i] = difF[j+1][i-1] - difF[j][i-1]
 
+    h = x[1] - x[0]
+    r = (givenPoint - x[0])/h
+    co = 1
     for i in range(n):
-        res += difF[0][i]
+        res += difF[0][i] * co
+        co *= (r - i) / (i+1)
 
     return res
 
