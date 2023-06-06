@@ -1,5 +1,4 @@
 import numpy as np
-from math import comb
 
 
 def newtonForwardDifference(givenPoint, x: np.ndarray, y: np.ndarray):
