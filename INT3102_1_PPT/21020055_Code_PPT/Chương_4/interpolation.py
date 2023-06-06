@@ -39,7 +39,7 @@ class Interpolation():
         return res
 
     def cubic_spline(self,  x: np.ndarray, y: np.ndarray):
-        print("Cubic Spline Method:")
+        # print("Cubic Spline Method:")
         n = len(x)
         h = np.diff(x)
 
@@ -81,7 +81,6 @@ class Interpolation():
         for i in range(len(x)-2, -1, -1):
             if givenPoint >= x[i]:
                 diff = givenPoint - x[i]
-                print("Diff =", diff )
                 self.default_cs(x, y, givenPoint)
                 return c[0][i] + c[1][i] * diff + c[2][i] * diff**2 + c[3][i] * diff**3
                 break
@@ -90,7 +89,7 @@ class Interpolation():
     def default_cs(self, x, y, x_new):
         f = CubicSpline(x, y, bc_type='natural')
         y_new = f(x_new)
-        print(y_new)
+        print("Scipy.Interpolation:",y_new)
 
 
 
@@ -101,4 +100,13 @@ if __name__ == "__main__":
 
     solver = Interpolation()
 
-    print(solver.cubic_spline_calculator(2.1, x, y))
+    print("Cubic Spline:", solver.cubic_spline_calculator(2.1, x, y))
+
+    xl = x.tolist()
+    yl = y.tolist()
+    zipped = list(zip(xl, yl))
+    print("Lagrange:", solver.lagrangeInterpolation(zipped, 2.1))
+
+    # print("Lagrange.", solver.lagrangeInterpolation(
+    #     [(-0.75, -0.0718125), (-0.5, -0.02475), (-0.25, 0.3349375), (0, 0.2484244)],
+    #     -0.3333333))
