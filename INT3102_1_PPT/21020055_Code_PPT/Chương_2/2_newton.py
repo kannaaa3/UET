@@ -2,7 +2,7 @@ def derivative(f, x: float, tol) -> float:
     """
     Return the derivative of function f at a specific point
     """
-    return (f(x + tol) - f(tol)) / tol
+    return (f(x + tol) - f(x)) / tol
 
 
 def newtonMethod(f, p0, tol=1e-3, max_iter=100):
