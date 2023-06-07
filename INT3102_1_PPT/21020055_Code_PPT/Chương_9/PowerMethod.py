@@ -21,17 +21,19 @@ class PowerMethodSolver():
 
 class EuclideanScaling(PowerMethodSolver):
     def solve(self, A: np.ndarray, x: np.ndarray, iter=100):
+        Ax = np.matmul(A, x)
         for _ in range(iter):
-            Ax = np.matmul(A, x)
             x = Ax / norm(Ax)
+            Ax = np.matmul(A, x)            
             eigenvalue = np.dot(Ax, x)
         return (eigenvalue, x)
 
 class MaximumEntryScaling(PowerMethodSolver):
     def solve(self, A: np.ndarray, x: np.ndarray, iter=100):
+        Ax = np.matmul(A, x)
         for _ in range(iter):
-            Ax = np.matmul(A, x)
             x = Ax / max (Ax)
+            Ax = np.matmul(A, x)
             eigenvalue = np.dot(Ax, x) / np.dot(x, x)
         return (eigenvalue, x)
     
