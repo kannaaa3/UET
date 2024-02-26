@@ -36,8 +36,15 @@ void add_cmd(char *cmd) {
     recent_cmds[cmd_ptr] = malloc(MAX_LINE);
   }
   strcpy(recent_cmds[cmd_ptr], cmd);
-  // printf("add %s\n", recent_cmds[cmd_ptr]);
   cmd_ptr = (cmd_ptr + 1) % CMD_BUF_LEN;
+}
+
+void print_history() {
+  for (int j = 1; j <= 6; j++) {
+    int i = (cmd_ptr - j +CMD_BUF_LEN) % CMD_BUF_LEN;
+      if (recent_cmds[i] == 0)  break;
+      printf("> %s", recent_cmds[i]);
+  }
 }
 
 char *get_recent_cmd(int num) {
@@ -64,6 +71,13 @@ int main(void) {
 
     memset(buf, 0, MAX_LINE);
     read(0, buf, MAX_LINE);
+
+    int res = strcmp(buf, "history\n");
+    if (!res) {
+      print_history();
+      continue;
+    }
+
 
     if (buf[0] == '!') {
       char *find_cmd;
@@ -95,6 +109,8 @@ int main(void) {
     if (!argc)
       continue;
 
+    int conc = !(strcmp(args[argc - 1], "&"));
+
     pid_t pid = fork();
     if (pid < 0) {
       printf("Fork failed!\n");
@@ -103,13 +119,13 @@ int main(void) {
     // child process
     if (pid == 0) {
       fflush(stdout);
-      for (int i = argc; i < MAX_ARGC; i++)
+      for (int i = argc - 1*(conc!=0); i < MAX_ARGC; i++)
         args[i] = 0;
       if (execvp(args[0], args) == -1) {
         printf("Failed to execute command!\n");
       }
     }
-    if (strcmp(args[argc - 1], "&")) {
+    if (!conc) {
       wait(NULL);
     }
   }
