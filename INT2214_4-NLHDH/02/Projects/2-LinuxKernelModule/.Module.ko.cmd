@@ -1,0 +1,1 @@
+savedcmd_/home/kannaaa3/VCS/trash/os/Projects/2-LinuxKernelModule/Module.ko := ld -r -m elf_x86_64 -z noexecstack --no-warn-rwx-segments --build-id=sha1  -T scripts/module.lds -o /home/kannaaa3/VCS/trash/os/Projects/2-LinuxKernelModule/Module.ko /home/kannaaa3/VCS/trash/os/Projects/2-LinuxKernelModule/Module.o /home/kannaaa3/VCS/trash/os/Projects/2-LinuxKernelModule/Module.mod.o

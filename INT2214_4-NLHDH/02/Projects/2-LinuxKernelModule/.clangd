@@ -1,0 +1,6 @@
+CompileFlags: # Tweak the parse settings
+  Add: 
+    - "-I=/usr/src/linux/include"
+    - "-std=C99"
+
+
