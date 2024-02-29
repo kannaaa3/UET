@@ -22,6 +22,7 @@ class Scanner():
 
     SPECIAL_CHARS = "();><="
 
+    # (regex, name) of tokens
     TOKEN_REGEX = [
         ("^[a-z][0-9][a-z0-9]*$", 'IDENTIFIER'),
         ("^[0]|[1-9][0-9]*$", 'NUMBER'),
@@ -81,12 +82,13 @@ class Scanner():
 
 
 def main():
-    f = open("./inp.cpp", "r")
-    content = f.read()
-    f.close()
-    s = Scanner()
-    res = s.scan(content)
-    for x in res:
+    print("Enter filename: ")
+    with open(input(), "r") as f:
+        content = f.read()
+
+    scanner = Scanner()
+    tokens = scanner.scan(content)
+    for x in tokens:
         print(x)
 
 
