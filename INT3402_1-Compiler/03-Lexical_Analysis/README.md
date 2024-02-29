@@ -1,4 +1,5 @@
 <h1 align="center"> 🔹 Lexical Analyzer 🔹</h1>
+
 ### Our group: 
 
 - 21020055 Trần Thùy Dung 
