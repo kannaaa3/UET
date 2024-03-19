@@ -44,6 +44,11 @@ T = ;+*
 
 ```
 
-TODO:   regex for comments: van de do split() cac words
-        parser
-        color printer
+## 19/03/2024: 5h20-7h45 Toan & Dung working on grammar and scanner
+TODO:   
+
+- regex for comments: van de do split() cac words
+- parser
+- color printer
+
+
