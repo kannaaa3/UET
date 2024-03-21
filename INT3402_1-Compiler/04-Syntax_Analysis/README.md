@@ -14,7 +14,7 @@ T = (){};+*=, int, bool, <Id>, <Number>, <ROP>, do, while, if, then, else
 
 <stmt>  -> if <Expr> then { <stmtList> }
         | if <Expr> then { <stmtList> } else { <stmtList> } 
-        | do { <stmtList> } while (<Expr>);
+        | do { <stmtList> } while (<Expr>)
         | <Assignment>
         | print(<Expr>)
         | <Declaration>
