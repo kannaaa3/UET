@@ -20,7 +20,6 @@ T = (){};+*=, int, bool, <Id>, <Number>, <ROP>, do, while, if, then, else
         | <Declaration>
 
 
-
 <Type> -> int | bool
 <Declaration> -> <Type> <L>
 <L> ->   <L1>,  <L> | <L1>
@@ -38,7 +37,8 @@ T = (){};+*=, int, bool, <Id>, <Number>, <ROP>, do, while, if, then, else
         -> <Expr> + <Term>
         -> <Term>
 
-<Term>  ->  <Factor> * Term |   <Factor> <Factor> -> <Y> | (<Expr>) ```
+<Term>  ->  <Factor> * Term |   <Factor> <Factor> -> <Y> | (<Expr>) 
+```
 
 ## 19/03/2024: 5h20-7h45 Toan & Dung working on grammar and scanner
 TODO:  Dung
