@@ -8,36 +8,37 @@
 ```
 S -> begin <stmtList> end
 
-T = (){};+*=, int, bool, <Id>, <Number>, <ROP>, do, while, if, then, else
+T = (){};+*=, int, bool, <Id>, <Number>, <ROP>, do, while, if, then, else, print
 
-<stmtList>    -> <stmt>; | <stmt>;<stmtList>
+<stmtList>    ->  <stmt>;<stmtList> | epsilon
 
 <stmt>  -> if <Expr> then { <stmtList> }
         | if <Expr> then { <stmtList> } else { <stmtList> } 
         | do { <stmtList> } while (<Expr>)
         | <Assignment>
-        | print(<Expr>)
         | <Declaration>
+        | print(<Expr>)                     // should be some function or just print?
 
 
-<Type> -> int | bool
-<Declaration> -> <Type> <L>
-<L> ->   <L1>,  <L> | <L1>
-<L1> -> <Id> | <Assign-stmt> 
+<Type>          -> int | bool
+<Declaration>   -> <Type> <L>
+<L>             -> <L1>,  <L> | <L1>        // Multiple variables declaration
+<L1>            -> <Id> | <Assign-stmt> 
 
-
-<Assignment> -> <Id> = <Expr>
-
-```
-
+<Assignment> -> <Id> = <Expr>               // int a = true: should be caught on next phase, not parser
 
 ```
-<Y> -> Id | Number
-<Expr>  -> <Expr> <ROP> <Expr>
-        -> <Expr> + <Term>
-        -> <Term>
 
-<Term>  ->  <Factor> * Term |   <Factor> <Factor> -> <Y> | (<Expr>) 
+
+```
+<Expr>      -> <C> | <M-Expr>
+<C>         -> <M-Expr> <ROP> <M-Expr>           // <ROP> is right-associative
+<M-Expr>    -> <Term> + <M-Expr> | <Term>
+<Y>         -> Id | Number
+
+# right-associative
+<Term>      ->  <Factor> * <Term> |   <Factor> 
+<Factor>    -> <Y> | (<M-Expr>) 
 ```
 
 ## 19/03/2024: 5h20-7h45 Toan & Dung working on grammar and scanner
@@ -55,4 +56,5 @@ TODO:  Dung
 - Loai bo de quy gian tiep
 - FIRST & FOLLOW
 
-
+## 22/03/2024: 10PM
+Grammar
