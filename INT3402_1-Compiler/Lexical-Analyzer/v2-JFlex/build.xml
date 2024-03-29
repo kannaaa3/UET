@@ -1,0 +1,58 @@
+<project name="Compiler" default="jar" basedir=".">
+  <property name="cup"     location="cup"     />
+  <property name="jflex"   location="jflex"    />
+  <property name="src"     location="src"     />
+  <property name="classes" location="bin" />
+  <property name="dist"    location="dist"    />
+  <property name="lib"     location="lib"     />
+  <property name="tools"   location="tools"     />
+
+  <target name="init">
+    <mkdir dir="${classes}"/>
+    <mkdir dir="${dist}"/>
+  </target>
+
+  <taskdef name="jflex" classname="jflex.anttask.JFlexTask" classpath="${tools}/jflex-full-1.9.1.jar" />
+  
+
+  <target name="generate" depends="init">
+    <jflex file="${jflex}/Scanner.jflex"  destdir="${src}" />
+  </target>
+
+  
+  <path id="libraries">
+    <files includes="${lib}/java-cup-11b-runtime.jar" />
+  </path>
+  <target name="compile" depends="generate">
+    <javac srcdir="${src}" destdir="${classes}">
+      <classpath refid="libraries" />
+    </javac>
+  </target>
+
+  <target name="jar" depends="compile">
+    <jar jarfile="${dist}/Compiler.jar" basedir="${classes}">
+     <manifest>
+       <attribute name="Main-Class" value="upl.Main" />
+       <attribute name="Class-Path" value="java-cup-11b-runtime.jar" />
+     </manifest>
+    </jar>
+    <copy todir="${dist}">
+	<fileset dir="${lib}" includes="**/**.jar"/>
+    </copy>
+  </target>
+
+  <!-- Test the parser in a single run -->
+  <target name="run" depends="jar">
+    <java jar="${dist}/Compiler.jar" fork="true">
+      <arg value="input.upl" />
+    </java>
+  </target>
+
+  <target name="clean">
+    <delete file="${src}/upl/Scanner.java" />
+    <delete file="${src}/upl/Parser.java" />
+    <delete file="${src}/upl/sym.java" />
+    <delete dir="${classes}" />
+    <delete dir="${dist}" />
+  </target>
+</project>

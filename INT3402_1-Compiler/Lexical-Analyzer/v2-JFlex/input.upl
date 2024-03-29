@@ -1,0 +1,13 @@
+begin
+  /* ignore me 
+        i'm shy */
+	int xx11xx1*; // Invalid identifier
+
+  // me too  ...
+  bool x = b==a;
+	int y22=x+1;
+	bool a = true;
+	if x>a then{
+		int c=1;
+	}else{
+  }

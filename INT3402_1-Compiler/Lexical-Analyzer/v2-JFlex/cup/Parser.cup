@@ -1,0 +1,71 @@
+package upl;
+
+import java_cup.runtime.*;
+import Example.Parser.Expr;
+import java.io.*;
+parser code {:
+    public static abstract class Expr {
+	public abstract int eval();
+	public abstract Location right();
+	public abstract Location left();
+	static class BinExpr extends Expr {
+	    Expr l,r;
+	    int s;
+	    BinExpr(Expr l, int sym,Expr r){
+		this.l=l;
+		this.r=r;
+		this.s=sym;
+	    }
+	    public int eval(){
+		if (s==sym.PLUS) return l.eval() + r.eval();
+		else return l.eval() * r.eval();
+	    }
+	    public Location left() { return l.left(); }
+	    public Location right() {return r.right(); }
+	}
+	static class Const extends Expr {
+	    Location l,r;
+	    Integer value;
+	    Const(Location l,Integer i,Location r){
+		this.l=l;
+		this.r=r;
+		this.value = i;
+	    }
+	    public int eval(){ return value;  }
+	    public Location left() { return l; }
+	    public Location right() {return r; }
+	}
+    }
+    public static void main(String args[]) throws Exception {
+	ComplexSymbolFactory sf = new ComplexSymbolFactory();
+	if (args.length==0) new Parser(new Scanner(new InputStreamReader(System.in),sf),sf).parse();
+	else new Parser(new Scanner(new InputStreamReader(new java.io.FileInputStream(args[0])),sf),sf).parse();
+    }
+
+    public void syntax_error(Symbol sym){ 
+	// Mute legacy Error Printing
+    }
+:}
+
+terminal SEMI, PLUS, TIMES, LPAREN, RPAREN;
+terminal Integer NUMBER;
+
+non terminal expr_list, expr_part;
+non terminal Expr expr;
+
+precedence left PLUS;
+precedence left TIMES;
+
+expr_list ::= expr_list expr_part | expr_part;
+expr_part ::= expr:e {: System.out.println(" = "+e.eval()+";"); :} SEMI
+            | error:e SEMI:s {: parser.report_error("Syntax error in input from "+exleft +" to "+sxright,e); :}
+            ;
+expr      ::= NUMBER:n
+              {: RESULT= new Expr.Const(nxleft,n,nxright); :}
+            | expr:l PLUS expr:r
+	    {: RESULT=new Expr.BinExpr(l,sym.PLUS,r); :}
+	    | expr:l TIMES expr:r
+	    {: RESULT=new Expr.BinExpr(l,sym.TIMES,r); :}
+	    | LPAREN expr:e RPAREN
+	      {: RESULT=e; :}
+	    ;

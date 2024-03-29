@@ -1,0 +1,42 @@
+Buildfile: /home/kannaaa3/Compiler/Lexical Analyzer/JFlex/build.xml
+
+init:
+
+generate:
+
+compile:
+    [javac] /home/kannaaa3/Compiler/Lexical Analyzer/JFlex/build.xml:27: warning: 'includeantruntime' was not set, defaulting to build.sysclasspath=last; set to false for repeatable builds
+
+jar:
+
+BUILD SUCCESSFUL
+Total time: 0 seconds
+(BEGIN, begin)
+(INT_T, int)
+(IDENTIFIER, x1)
+(SEMICOLON, ;)
+(INT_T, int)
+(IDENTIFIER, y22)
+(ASSIGN, =)
+(IDENTIFIER, x)
+(ADD, +)
+(NUMBER, 1)
+(SEMICOLON, ;)
+(BOOL_T, bool)
+(IDENTIFIER, a)
+(SEMICOLON, ;)
+(IF, if)
+(IDENTIFIER, x)
+(ROP, >)
+(IDENTIFIER, a)
+(THEN, then)
+(LEFT_PARENTHESIS, {)
+(INT_T, int)
+(IDENTIFIER, c)
+(ASSIGN, =)
+(NUMBER, 1)
+(SEMICOLON, ;)
+(RIGHT_PARENTHESIS, })
+(ELSE, else)
+(LEFT_PARENTHESIS, {)
+EOF
