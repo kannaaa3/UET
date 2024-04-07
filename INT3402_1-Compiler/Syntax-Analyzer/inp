@@ -1,0 +1,26 @@
+begin
+	int x=a==b;
+	int y22=x+1;
+	bool a;
+	if x>a then{
+		int c=1;
+	}else{
+		y=x;
+		x=x+1;
+	}
+	print(a);
+	if x>=a then {
+	x=x+1;
+}
+	bool x=a==b;
+  abc123 = true + 12 + 0 * 1192
+
+	do{
+		int b=1;
+		b=1>==10;
+		a=(b+10)*b;
+	}
+  while(a>1);
+	print(a+1);
+end
+
